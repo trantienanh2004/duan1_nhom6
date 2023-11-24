@@ -15,16 +15,17 @@ import java.util.GregorianCalendar;
  * @author HP
  */
 public class manhinhchinhJFrame extends javax.swing.JFrame {
-Color maugoc,mauclick;
+
+    Color maugoc, mauclick;
+
     /**
      * Creates new form NewJFrame
      */
     public manhinhchinhJFrame() {
         initComponents();
-        maugoc = new Color(255,255,255);
-        mauclick = new Color(255,102,0);
+        maugoc = new Color(255, 255, 255);
+        mauclick = new Color(255, 102, 0);
         ngaythangnamGio();
-        
     }
 
     /**
@@ -417,24 +418,24 @@ Color maugoc,mauclick;
         plThongKe.setBackground(mauclick);
         plNhanvien.setBackground(maugoc);
         plSanPham.setBackground(maugoc);
-        
-        
+
+
     }//GEN-LAST:event_plThongKeMousePressed
 
     private void plSanPhamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plSanPhamMousePressed
-               HoaDon.setBackground(maugoc);
+        HoaDon.setBackground(maugoc);
         plthoat.setBackground(maugoc);
         plkhachhang.setBackground(maugoc);
         pldoimatkhau.setBackground(maugoc);
         plThongKe.setBackground(maugoc);
         plNhanvien.setBackground(maugoc);
         plSanPham.setBackground(mauclick);
-        
-        
+
+
     }//GEN-LAST:event_plSanPhamMousePressed
 
     private void HoaDonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonMousePressed
-             HoaDon.setBackground(mauclick);
+        HoaDon.setBackground(mauclick);
         plthoat.setBackground(maugoc);
         plkhachhang.setBackground(maugoc);
         pldoimatkhau.setBackground(maugoc);
@@ -444,7 +445,7 @@ Color maugoc,mauclick;
     }//GEN-LAST:event_HoaDonMousePressed
 
     private void plNhanvienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plNhanvienMousePressed
-               HoaDon.setBackground(maugoc);
+        HoaDon.setBackground(maugoc);
         plthoat.setBackground(maugoc);
         plkhachhang.setBackground(maugoc);
         pldoimatkhau.setBackground(maugoc);
@@ -454,7 +455,7 @@ Color maugoc,mauclick;
     }//GEN-LAST:event_plNhanvienMousePressed
 
     private void plkhachhangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plkhachhangMousePressed
-                HoaDon.setBackground(maugoc);
+        HoaDon.setBackground(maugoc);
         plthoat.setBackground(maugoc);
         plkhachhang.setBackground(mauclick);
         pldoimatkhau.setBackground(maugoc);
@@ -470,7 +471,7 @@ Color maugoc,mauclick;
     }//GEN-LAST:event_pldoimatkhauMouseClicked
 
     private void pldoimatkhauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pldoimatkhauMousePressed
-               HoaDon.setBackground(maugoc);
+        HoaDon.setBackground(maugoc);
         plthoat.setBackground(maugoc);
         plkhachhang.setBackground(maugoc);
         pldoimatkhau.setBackground(mauclick);
@@ -480,7 +481,7 @@ Color maugoc,mauclick;
     }//GEN-LAST:event_pldoimatkhauMousePressed
 
     private void plthoatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plthoatMousePressed
-                HoaDon.setBackground(maugoc);
+        HoaDon.setBackground(maugoc);
         plthoat.setBackground(mauclick);
         plkhachhang.setBackground(maugoc);
         pldoimatkhau.setBackground(maugoc);
@@ -512,13 +513,13 @@ Color maugoc,mauclick;
     }//GEN-LAST:event_HoaDonMouseClicked
 
     private void plNhanvienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plNhanvienMouseClicked
-       manhinhnhanvien manhinhnv = new manhinhnhanvien();
+        manhinhnhanvien manhinhnv = new manhinhnhanvien();
         jDesktopPane1.removeAll();
         jDesktopPane1.add(manhinhnv).setVisible(true);
     }//GEN-LAST:event_plNhanvienMouseClicked
 
     private void plkhachhangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plkhachhangMouseClicked
-        manhinhkhachhang manhinhkh= new manhinhkhachhang();
+        manhinhkhachhang manhinhkh = new manhinhkhachhang();
         jDesktopPane1.removeAll();
         jDesktopPane1.add(manhinhkh).setVisible(true);
     }//GEN-LAST:event_plkhachhangMouseClicked
@@ -585,12 +586,12 @@ Color maugoc,mauclick;
     private javax.swing.JPanel plthoat;
     // End of variables declaration//GEN-END:variables
 
-public void ngaythangnamGio() {
+    public void ngaythangnamGio() {
         new Thread() {
             public void run() {
                 while (true) {
                     LocalDate today = LocalDate.now();
-        lbngaythang.setText(today.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                    lbngaythang.setText(today.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                     Calendar ca = new GregorianCalendar();
                     int hour = ca.get(Calendar.HOUR);
                     int min = ca.get(Calendar.MINUTE);
@@ -602,11 +603,9 @@ public void ngaythangnamGio() {
                     } else {
                         day_night = "AM";
                     }
-                    lbgio.setText(hour + ":" +min+":"+sec+":"+day_night);
+                    lbgio.setText(hour + ":" + min + ":" + sec + ":" + day_night);
                 }
             }
         }.start();
     }
 }
-
-

@@ -84,21 +84,21 @@ public class sanphamchitietService {
         Integer row = null;
         Connection cn = DB.getConnection();
         String sql = "update CHITIETSANPHAM\n"
-                + "set MASP = ? ,MAMS = ? ,MACL = ? , MASIZE = ? ,HINHANH = ? ,SOLUONG = ? , GIA =? ,MOTA = ?, Thanhtoan = ?\n"
+                + "set MAMS = ? ,MACL = ? , MASIZE = ? ,HINHANH = ? ,SOLUONG = ? , GIA =? ,MOTA = ?, Thanhtoan = ?\n"
                 + "where MACTSP = ?";
         try {
             PreparedStatement pd = cn.prepareStatement(sql);
 
-            pd.setString(1, SPCT.getMASP());
-            pd.setInt(2, Integer.valueOf(SPCT.getMau()));
-            pd.setInt(3, Integer.valueOf(SPCT.getChatlieu()));
-            pd.setInt(4, Integer.valueOf(SPCT.getSIZE()));
-            pd.setNString(5, SPCT.getLinkAnh());
-            pd.setInt(6, SPCT.getSOLUONG());
-            pd.setDouble(7, SPCT.getGIA());
-            pd.setNString(8, "null");
-            pd.setNString(9, "chưa thanh toán");
-            pd.setInt(10, SPCT.getMaspct());
+            
+            pd.setInt(1, Integer.valueOf(SPCT.getMau()));
+            pd.setInt(2, Integer.valueOf(SPCT.getChatlieu()));
+            pd.setInt(3, Integer.valueOf(SPCT.getSIZE()));
+            pd.setNString(4, SPCT.getLinkAnh());
+            pd.setInt(5, SPCT.getSOLUONG());
+            pd.setDouble(6, SPCT.getGIA());
+            pd.setNString(7, "null");
+            pd.setNString(8, "chưa thanh toán");
+            pd.setInt(9, SPCT.getMaspct());
             row = pd.executeUpdate();
         } catch (Exception e) {
             System.out.println("lỗi");
