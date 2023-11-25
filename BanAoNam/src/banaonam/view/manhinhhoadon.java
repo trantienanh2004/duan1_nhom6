@@ -384,7 +384,7 @@ public class manhinhhoadon extends javax.swing.JInternalFrame {
         int nhapSL = Integer.parseInt(JOptionPane.showInputDialog("Mời nhập số lượng"));
         index = tblSanPham.getSelectedRow();
         int soluong = Integer.parseInt(tblSanPham.getValueAt(index, 7).toString());
-        sanphamchitiet spct = serviceSPCT.getallsanphamchitiet().get(index);
+        sanphamchitiet spct = serviceSPCT.getallsanphamchitietHD().get(index);
         sanphamchitiet spctGioHang = new sanphamchitiet();
         spctGioHang.setMASP(spct.getMASP());
         spctGioHang.setTensp(spct.getTensp());

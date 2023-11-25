@@ -26,6 +26,40 @@ public class sanphamchitietService {
         ArrayList<sanphamchitiet> dsspct = new ArrayList<>();
 
         Connection cn = DB.getConnection();
+        String sql = "SELECT sanpham.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,gia,chitietsanpham.SOLUONG,MACTSP,CHITIETSANPHAM.HINHANH,trangthai FROM SANPHAM \n"
+                + "join CHITIETSANPHAM on sanpham.MASP = CHITIETSANPHAM.masp \n"
+                + "join MAUSAC on MAUSAC.MAMS = CHITIETSANPHAM.MAMS \n"
+                + "join CHATLIEU on CHATLIEU.MACL = CHITIETSANPHAM.MACL \n"
+                + "join SIZE on SIZE.MASIZE = CHITIETSANPHAM.MASIZE order by MACTSP";
+                
+        try {
+            PreparedStatement pd = cn.prepareStatement(sql);
+            ResultSet rs = pd.executeQuery();
+            while (rs.next()) {
+                sanphamchitiet spct = new sanphamchitiet();
+
+                spct.setMASP(rs.getString(1));
+                spct.setTensp(rs.getString(2));
+                spct.setSIZE(rs.getString(3));
+                spct.setMau(rs.getString(4));
+                spct.setChatlieu(rs.getString(5));
+                spct.setGIA(rs.getDouble(6));
+                spct.setSOLUONG(rs.getInt(7));
+                spct.setMaspct(rs.getInt(8));
+                spct.setLinkAnh(rs.getString(9));
+                spct.setThanhtoan(rs.getString(10));
+                dsspct.add(spct);
+            }
+        } catch (Exception e) {
+            System.out.println("lỗi");
+            e.printStackTrace();
+        }
+        return dsspct;
+    }
+    public ArrayList<sanphamchitiet> getallsanphamchitietHD() {
+        ArrayList<sanphamchitiet> dsspct = new ArrayList<>();
+
+        Connection cn = DB.getConnection();
         String sql = "SELECT sanpham.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,FORMAT(gia,'N0','de-DE'),chitietsanpham.SOLUONG,MACTSP,CHITIETSANPHAM.HINHANH,trangthai FROM SANPHAM \n"
                 + "join CHITIETSANPHAM on sanpham.MASP = CHITIETSANPHAM.masp \n"
                 + "join MAUSAC on MAUSAC.MAMS = CHITIETSANPHAM.MAMS \n"
@@ -60,7 +94,7 @@ public class sanphamchitietService {
         ArrayList<sanphamchitiet> dsspct = new ArrayList<>();
 
         Connection cn = DB.getConnection();
-        String sql = "SELECT sanpham.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,FORMAT(gia,'N0','de-DE'),chitietsanpham.SOLUONG,MACTSP,CHITIETSANPHAM.HINHANH,trangthai FROM SANPHAM \n"
+        String sql = "SELECT sanpham.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,gia,chitietsanpham.SOLUONG,MACTSP,CHITIETSANPHAM.HINHANH,trangthai FROM SANPHAM \n"
                 + "join CHITIETSANPHAM on sanpham.MASP = CHITIETSANPHAM.masp \n"
                 + "join MAUSAC on MAUSAC.MAMS = CHITIETSANPHAM.MAMS \n"
                 + "join CHATLIEU on CHATLIEU.MACL = CHITIETSANPHAM.MACL \n"

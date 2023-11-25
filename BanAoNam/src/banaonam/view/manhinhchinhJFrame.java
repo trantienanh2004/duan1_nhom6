@@ -509,7 +509,7 @@ public class manhinhchinhJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_plSanPhamMouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void plThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plThongKeMouseClicked
