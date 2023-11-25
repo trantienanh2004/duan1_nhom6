@@ -17,15 +17,16 @@ import java.util.ArrayList;
  * @author HP
  */
 public class sizeService {
-   public ArrayList<size> getallchatlieu(){
+
+    public ArrayList<size> getallchatlieu() {
         ArrayList<size> dssize = new ArrayList<>();
         Connection cn = DB.getConnection();
         String sql = "SELECT * FROM SIZE";
         try {
             PreparedStatement pd = cn.prepareStatement(sql);
             ResultSet rs = pd.executeQuery();
-            while (rs.next()) {                
-                size sz =new size();
+            while (rs.next()) {
+                size sz = new size();
                 sz.setMaSize(rs.getInt(1));
                 sz.setTenSize(rs.getString(2));
                 dssize.add(sz);
@@ -36,24 +37,45 @@ public class sizeService {
         }
         return dssize;
     }
-   
-   public Integer addsize (String size){
-       Integer row =null;
+
+    public int getMaSize(String ten) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        sql = "select MASIZE from SIZE where TENSIZE = ?";
+        size s = null;
+        try {
+            con = DB.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, ten);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                s = new size();
+                s.setMaSize(rs.getInt("MASIZE"));
+            }
+            return s.getMaSize();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public Integer addsize(String size) {
+        Integer row = null;
         Connection cn = DB.getConnection();
-        String sql = "INSERT INTO SIZE ( TENSIZE)\n" +
-"VALUES\n" +
-"( ?)";
+        String sql = "INSERT INTO SIZE ( TENSIZE)\n"
+                + "VALUES\n"
+                + "( ?)";
         try {
             PreparedStatement pd = cn.prepareStatement(sql);
-        pd.setNString(1, size);
-        row = pd.executeUpdate();
+            pd.setNString(1, size);
+            row = pd.executeUpdate();
         } catch (Exception e) {
             System.out.println("loi");
             e.printStackTrace();
         }
-       return row;
-   }
-   
-   
-   
+        return row;
+    }
+
 }

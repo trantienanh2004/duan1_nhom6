@@ -6,6 +6,8 @@ package banaonam.view;
 
 import banaonam.sevice.dangnhapservice;
 import banaonam.model.dangnhap;
+import banaonam.model.taikhoan;
+import banaonam.sevice.taikhoanservice;
 
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class DangNhapJFrame extends javax.swing.JFrame {
 
     dangnhapservice dn = new dangnhapservice();
+    taikhoanservice serviceTK = new taikhoanservice();
 
     /**
      * Creates new form DangNhapJFrame
@@ -25,7 +28,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     public DangNhapJFrame() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -51,7 +54,6 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -140,27 +142,28 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         List<dangnhap> dangnhap = dn.getalldangnhap();
         boolean check = false;
         int j = 0;
-        if(txtPass.getText().trim().length()<=0 && txtUser.getText().trim().length()<=0){
+        if (txtPass.getText().trim().length() <= 0 && txtUser.getText().trim().length() <= 0) {
             JOptionPane.showMessageDialog(this, "không được để trống");
-            return ;
-        }else{
+            return;
+        } else {
             for (int i = 0; i < dangnhap.size(); i++) {
-                if(txtUser.getText().equalsIgnoreCase(dangnhap.get(i).getTentk())&&txtPass.getText().equalsIgnoreCase(dangnhap.get(i).getPass()) ){
+                if (txtUser.getText().equalsIgnoreCase(dangnhap.get(i).getTentk()) && txtPass.getText().equalsIgnoreCase(dangnhap.get(i).getPass())) {
                     check = true;
-                    j =i;
+                    j = i;
                 }
             }
-            if(check == true){
-                JOptionPane.showMessageDialog(this, "đăng nhập thành công , chức vụ của bạn là "+dangnhap.get(j).getRole());
-                new manhinhchinhJFrame().setVisible(true);
+            if (check == true) {
+                JOptionPane.showMessageDialog(this, "đăng nhập thành công , chức vụ của bạn là " + dangnhap.get(j).getRole());
+                manhinhchinhJFrame mh = new manhinhchinhJFrame();
+                mh.setVisible(true);
+                //mh.txtTenTK.setText(txtUser.getText());
                 setVisible(false);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "đăng nhập thất bại");
             }
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
@@ -213,8 +216,8 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField txtPass;
-    private javax.swing.JTextField txtUser;
+    public static javax.swing.JPasswordField txtPass;
+    public static javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 
 }

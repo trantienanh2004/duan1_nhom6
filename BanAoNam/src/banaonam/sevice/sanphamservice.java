@@ -51,7 +51,7 @@ public class sanphamservice {
            pd.setString(1, sp.getMasp());
            pd.setString(2, sp.getTensp());
            pd.setString(3, sp.getNgaytao());
-           pd.setString(4, "null");
+           pd.setString(4, sp.getTrangthai());
           
            row = pd.executeUpdate();
         } catch (Exception e) {
@@ -65,12 +65,12 @@ public class sanphamservice {
         Integer row =null;
         Connection cn = DB.getConnection();
         String sql = "update sanpham\n" +
-"			   set tensp =?,ngaytao = ?\n" +
-"			   where MASP = ?";
+"set TENSP = ?,ngaytao = ?\n" +
+"where Masp = ?";
         try {
            PreparedStatement pd = cn.prepareStatement(sql);
            pd.setString(1, sp.getTensp());
-           pd.setString(2, sp.getNgaytao());
+           pd.setString(2, sp.getTrangthai());
            pd.setString(3, sp.getMasp());
            
            row = pd.executeUpdate();

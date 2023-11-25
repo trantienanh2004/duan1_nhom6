@@ -4,6 +4,7 @@
  */
 package banaonam;
 
+import banaonam.view.DangNhapJFrame;
 import banaonam.view.manhinhchinhJFrame;
 
 /**
@@ -16,7 +17,8 @@ public class BanAoNam {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       new manhinhchinhJFrame().setVisible(true);
+        new DangNhapJFrame().setVisible(true);
+       //new manhinhchinhJFrame().setVisible(true);
     }
     
 }

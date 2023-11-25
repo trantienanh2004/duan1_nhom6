@@ -38,7 +38,28 @@ public class mauService {
         return dsmau;
     }
     
-    
+    public int getMaMau(String tenMau){
+         Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "";
+        
+        sql = "select MAMS from MAUSAC where TENMAU = ?";
+        mau ms = null;
+        try {
+            con = DB.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, tenMau);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                ms = new mau();
+                ms.setMaMau(rs.getInt("MAMS"));
+            }
+            return ms.getMaMau();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
     public Integer addmau(String tenmau){
         Integer row = null;
         Connection cn = DB.getConnection();

@@ -4,6 +4,10 @@
  */
 package banaonam.view;
 
+import banaonam.model.taikhoan;
+import banaonam.sevice.nhanvienservice;
+import banaonam.sevice.taikhoanservice;
+import static banaonam.view.DangNhapJFrame.txtUser;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,11 +25,19 @@ public class manhinhchinhJFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    taikhoanservice serviceTK = new taikhoanservice();
+    nhanvienservice serviceNV = new nhanvienservice();
     public manhinhchinhJFrame() {
         initComponents();
         maugoc = new Color(255, 255, 255);
         mauclick = new Color(255, 102, 0);
         ngaythangnamGio();
+        
+        
+        
+        
+ 
+        
     }
 
     /**
@@ -331,7 +343,7 @@ public class manhinhchinhJFrame extends javax.swing.JFrame {
                 .addComponent(plthoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 210, 420));
@@ -418,7 +430,7 @@ public class manhinhchinhJFrame extends javax.swing.JFrame {
         plThongKe.setBackground(mauclick);
         plNhanvien.setBackground(maugoc);
         plSanPham.setBackground(maugoc);
-
+        
 
     }//GEN-LAST:event_plThongKeMousePressed
 
@@ -430,7 +442,7 @@ public class manhinhchinhJFrame extends javax.swing.JFrame {
         plThongKe.setBackground(maugoc);
         plNhanvien.setBackground(maugoc);
         plSanPham.setBackground(mauclick);
-
+        
 
     }//GEN-LAST:event_plSanPhamMousePressed
 
@@ -608,4 +620,5 @@ public class manhinhchinhJFrame extends javax.swing.JFrame {
             }
         }.start();
     }
+    
 }

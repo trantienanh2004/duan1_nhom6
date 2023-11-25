@@ -117,6 +117,9 @@ public class sanphamchitiet {
     public void setThanhtoan(String thanhtoan) {
         this.thanhtoan = thanhtoan;
     }
+    public double getThanhTien(double Gia,int sl){
+        return Gia*sl;
+    }
    
 
     
