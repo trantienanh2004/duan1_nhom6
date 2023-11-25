@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class DB {
    private static String USENAME = "sa";
-   private static String PASSWORD = "locnhph38787";
+   private static String PASSWORD = "090909999";
    private static String URL = "jdbc:sqlserver://localhost:1433;databaseName=SQL_BAN_AO;trustServerCertificate=true";
    
    static {
