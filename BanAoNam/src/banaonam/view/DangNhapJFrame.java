@@ -70,7 +70,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jLabel1.setText("ĐĂNG NHẬP");
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/image icon/Image/Hinh/88cmh8ss (1).png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/88cmh8ss (1).png"))); // NOI18N
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 120, -1));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, 250, 430));

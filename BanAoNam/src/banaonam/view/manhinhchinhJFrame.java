@@ -282,9 +282,9 @@ public class manhinhchinhJFrame extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
-        lbgio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/image icon/Image/Hinh/Clock.png"))); // NOI18N
+        lbgio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/Alarm.png"))); // NOI18N
 
-        lbngaythang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/image icon/Image/Hinh/Calendar.png"))); // NOI18N
+        lbngaythang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/Calendar.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);

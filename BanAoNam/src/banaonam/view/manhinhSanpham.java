@@ -220,7 +220,7 @@ public class manhinhSanpham extends javax.swing.JInternalFrame {
         });
         jPanel3.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/image icon/Image/Hinh/Search.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/Search.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -377,7 +377,7 @@ public class manhinhSanpham extends javax.swing.JInternalFrame {
         jLabel14.setText("số lượng");
         pltong.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 57, -1, -1));
 
-        btnThemSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/image icon/Image/Hinh/Add.png"))); // NOI18N
+        btnThemSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/Add.png"))); // NOI18N
         btnThemSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemSizeActionPerformed(evt);
@@ -385,7 +385,7 @@ public class manhinhSanpham extends javax.swing.JInternalFrame {
         });
         pltong.add(btnThemSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 21, 23));
 
-        btnChatLieuVai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/image icon/Image/Hinh/Add.png"))); // NOI18N
+        btnChatLieuVai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/Add.png"))); // NOI18N
         btnChatLieuVai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChatLieuVaiActionPerformed(evt);
@@ -393,7 +393,7 @@ public class manhinhSanpham extends javax.swing.JInternalFrame {
         });
         pltong.add(btnChatLieuVai, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 21, 22));
 
-        btnMau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/image icon/Image/Hinh/Add.png"))); // NOI18N
+        btnMau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banaonam/icon/Add.png"))); // NOI18N
         btnMau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMauActionPerformed(evt);
