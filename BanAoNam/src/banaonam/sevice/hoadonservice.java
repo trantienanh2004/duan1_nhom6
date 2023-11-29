@@ -16,7 +16,6 @@ import java.util.ArrayList;
  *
  * @author NGUYEN HUU LOC
  */
-
 public class hoadonservice {
 
     Connection con = null;
@@ -63,13 +62,14 @@ public class hoadonservice {
         }
     }
 
-    public int updateHD(hoadon hd, int maHD) {
-        sql = "update HOADON set TRANGTHAI = N' Đã thanh toán' where MAHD=?";
+    public int updateHD(int maKH, int maHD) {
+        sql = "update HOADON set TRANGTHAI = N' Đã thanh toán',MAKH = ? where MAHD=?";
         try {
             con = DB.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, maHD);
 
+            ps.setObject(1, maKH);
+            ps.setObject(2, maHD);
             return ps.executeUpdate();
         } catch (Exception e) {
             return 0;

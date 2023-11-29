@@ -18,6 +18,27 @@ import java.util.List;
  * @author HP
  */
 public class sanphamservice {
+
+    public String getTenSP(String maSP){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select TENSP from SANPHAM where MASP = ?";
+        sanpham sp = null;
+        try {
+            con = DB.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, maSP);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                sp = new sanpham();
+                sp.setTensp(rs.getString("TENSP"));
+            }
+            return sp.getTensp();
+        } catch (Exception e) {
+            return null;
+        }
+    }
     public List<sanpham> getallsanpham(){
         ArrayList<sanpham> dssp = new ArrayList<>();
        

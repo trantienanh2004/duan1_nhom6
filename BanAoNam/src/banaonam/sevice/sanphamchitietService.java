@@ -21,8 +21,9 @@ public class sanphamchitietService {
     mauService mauservice = new mauService();
     ChatLieuService clservice = new ChatLieuService();
     sizeService sizeservice = new sizeService();
+    public Object getMaSP;
 
-    public ArrayList<sanphamchitiet> getallsanphamchitiet() {
+   public ArrayList<sanphamchitiet> getallsanphamchitietByHD() {
         ArrayList<sanphamchitiet> dsspct = new ArrayList<>();
 
         Connection cn = DB.getConnection();
@@ -31,13 +32,12 @@ public class sanphamchitietService {
                 + "join MAUSAC on MAUSAC.MAMS = CHITIETSANPHAM.MAMS \n"
                 + "join CHATLIEU on CHATLIEU.MACL = CHITIETSANPHAM.MACL \n"
                 + "join SIZE on SIZE.MASIZE = CHITIETSANPHAM.MASIZE order by MACTSP";
-                
+
         try {
             PreparedStatement pd = cn.prepareStatement(sql);
             ResultSet rs = pd.executeQuery();
             while (rs.next()) {
                 sanphamchitiet spct = new sanphamchitiet();
-
                 spct.setMASP(rs.getString(1));
                 spct.setTensp(rs.getString(2));
                 spct.setSIZE(rs.getString(3));
@@ -56,16 +56,17 @@ public class sanphamchitietService {
         }
         return dsspct;
     }
-    public ArrayList<sanphamchitiet> getallsanphamchitietHD() {
+
+    public ArrayList<sanphamchitiet> getallsanphamchitiet() {
         ArrayList<sanphamchitiet> dsspct = new ArrayList<>();
 
         Connection cn = DB.getConnection();
-        String sql = "SELECT sanpham.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,FORMAT(gia,'N0','de-DE'),chitietsanpham.SOLUONG,MACTSP,CHITIETSANPHAM.HINHANH,trangthai FROM SANPHAM \n"
-                + "join CHITIETSANPHAM on sanpham.MASP = CHITIETSANPHAM.masp \n"
-                + "join MAUSAC on MAUSAC.MAMS = CHITIETSANPHAM.MAMS \n"
-                + "join CHATLIEU on CHATLIEU.MACL = CHITIETSANPHAM.MACL \n"
-                + "join SIZE on SIZE.MASIZE = CHITIETSANPHAM.MASIZE order by MACTSP";
-                
+        String sql = "	   SELECT sanpham.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,gia,chitietsanpham.SOLUONG,MACTSP,CHITIETSANPHAM.HINHANH,trangthai FROM SANPHAM \n" +
+"                join CHITIETSANPHAM on sanpham.MASP = CHITIETSANPHAM.masp \n" +
+"                join MAUSAC on MAUSAC.MAMS = CHITIETSANPHAM.MAMS \n" +
+"                join CHATLIEU on CHATLIEU.MACL = CHITIETSANPHAM.MACL \n" +
+"                join SIZE on SIZE.MASIZE = CHITIETSANPHAM.MASIZE order by sanpham.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,FORMAT(gia,'N0','de-DE'),chitietsanpham.SOLUONG,MACTSP,CHITIETSANPHAM.HINHANH,trangthai";
+
         try {
             PreparedStatement pd = cn.prepareStatement(sql);
             ResultSet rs = pd.executeQuery();
@@ -90,6 +91,7 @@ public class sanphamchitietService {
         }
         return dsspct;
     }
+
     public ArrayList<sanphamchitiet> getallsanphamchitiet(int page) {
         ArrayList<sanphamchitiet> dsspct = new ArrayList<>();
 
@@ -126,25 +128,52 @@ public class sanphamchitietService {
         }
         return dsspct;
     }
-    public  int getCount(){
+
+    public int getCount() {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "";
-        
+
         sql = "select count (*) from chitietsanpham";
         try {
             con = DB.getConnection();
-            ps= con.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return rs.getInt(1);
             }
         } catch (Exception e) {
-            
+
         }
         return 0;
     }
+
+    public sanphamchitiet getMaSPCT(int maSPCT) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select * from CHITIETSANPHAM where MACTSP =?";
+        sanphamchitiet spct = null;
+        try {
+            con = DB.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, maSPCT);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                spct = new sanphamchitiet();
+                spct.setMASP(rs.getString("MASP"));
+                spct.setGIA(rs.getDouble("GIA"));
+                spct.setSOLUONG(rs.getInt("SOLUONG"));
+                spct.setMaspct(rs.getInt("MACTSP"));
+            }
+            return spct;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public int getMaSPCT(String mau, String chatlieu, String size, String maSP) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -191,6 +220,26 @@ public class sanphamchitietService {
             return spct.getSOLUONG();
         } catch (Exception e) {
             return 0;
+        }
+    }
+    public String getMaSP(int maCTSP){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select MASP from CHITIETSANPHAM where MACTSP = ?";
+        sanphamchitiet spct = null;
+        try {
+            con = DB.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, maCTSP);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                spct = new sanphamchitiet();
+                spct.setMASP(rs.getString("MASP"));
+            }
+            return spct.getMASP();
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -269,5 +318,5 @@ public class sanphamchitietService {
             return 0;
         }
     }
-    
+
 }

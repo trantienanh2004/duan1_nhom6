@@ -120,6 +120,8 @@ public class sanphamchitiet {
     public double getThanhTien(double Gia,int sl){
         return Gia*sl;
     }
+
+
    
 
     

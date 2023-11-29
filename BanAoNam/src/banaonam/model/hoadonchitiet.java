@@ -10,8 +10,8 @@ package banaonam.model;
  */
 public class hoadonchitiet {
     private int maHDCT,maCTSP,maHD,soLuong;
-    private double tongTien;
-    private String trangThai;
+    private double tongTien,gia;
+    private String trangThai,maSP,tenSP;
 
     public hoadonchitiet() {
     }
@@ -71,6 +71,33 @@ public class hoadonchitiet {
 
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public double getGia() {
+        return gia;
+    }
+
+    public void setGia(double gia) {
+        this.gia = gia;
+    }
+
+    public String getMaSP() {
+        return maSP;
+    }
+
+    public void setMaSP(String maSP) {
+        this.maSP = maSP;
+    }
+
+    public String getTenSP() {
+        return tenSP;
+    }
+
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
+    }
+    public double getThanhTien(double gia,int sl){
+        return gia*sl;
     }
     
     
