@@ -126,7 +126,37 @@ CONSTRAINT FK_HOADON_NHANVIEN FOREIGN KEY (MANV) REFERENCES NHANVIEN,
 CONSTRAINT FK_HOADON_KHACHHANG FOREIGN KEY (MAKH) REFERENCES KHACHHANG
 
 )
-GO
+go
+
+if OBJECT_ID('khuyenmai') is not null
+drop table khuyenmai
+go
+create table khuyenmai
+(
+idKM int identity not null,
+noidungkhuyenmai nVARCHAR(255) not null,
+makhuyenmai VARCHAR(15) not null,
+giam MONEY not null,
+ngaybatdau date  null,
+ngayketthuc date  null,
+trangthai nvarchar(100)  null,
+constraint pk_khuyenmai primary key (idKM),
+)
+
+go
+if OBJECT_ID('khuyenmaihoadon') is not null
+drop table khuyenmaihoadon
+go
+create table khuyenmaihoadon
+(
+idKMHD int identity not null,
+idKM int  not null,
+MAHD INT not null,
+constraint pk_khuyenmaihoadon primary key (idKMHD) ,
+CONSTRAINT FK_khuyenmaihoadon_HOADON FOREIGN KEY (MAHD) REFERENCES HOADON,
+CONSTRAINT FK_khuyenmaihoadon_khuyenmai FOREIGN KEY (idKM) REFERENCES khuyenmai,
+)
+go
 IF OBJECT_ID('HOADONCHITIET') IS NOT NULL
 DROP TABLE HOADONCHITIET
 GO
@@ -142,23 +172,7 @@ CONSTRAINT PK_HOADONCHITIET PRIMARY KEY (MAHDCT),
 CONSTRAINT PK_HOADONCHITIET_CHITIETSANPHAM FOREIGN KEY(MACTSP) REFERENCES CHITIETSANPHAM ,
 CONSTRAINT PK_HOADONCHITIET_HOADON FOREIGN KEY(MAHD) REFERENCES HOADON 
 )
-GO
-IF OBJECT_ID('DOITRA') IS NOT NULL
-DROP TABLE DOITRA
-GO
-CREATE TABLE DOITRA
-(
-MADT INT IDENTITY (100000,1),
-MAHDCT INT NOT NULL,
-MAKH INT NOT NULL,
-MANV INT NOT NULL,
-NGAYDOI DATE NOT NULL,
-LYDO NVARCHAR(255) NOT NULL,
-CONSTRAINT PK_DOITRA PRIMARY KEY (MADT),
-CONSTRAINT PK_DOITRA_HOADONCHITIET FOREIGN KEY(MAHDCT) REFERENCES HOADONCHITIET ,
-CONSTRAINT PK_DOITRA_KHACHHANG FOREIGN KEY(MAKH) REFERENCES KHACHHANG ,
-CONSTRAINT PK_DOITRA_NHANVIEN FOREIGN KEY(MANV) REFERENCES NHANVIEN ,
-)
+
 
 
 SELECT * FROM TAIKHOAN
@@ -169,11 +183,12 @@ SELECT * FROM CHatlieu
 SELECT * FROM SIZE
 SELECT * FROM HOADON
 SELECT * FROM KHACHHANG
-SELECT * FROM NHANVIEN
+SELECT * FROM NHANVIEN 
 SELECT * FROM HOADONCHITIET
-select * from DOITRA
 SELECT * FROM CHITIETSANPHAM 
 select * from SANPHAM
+select * from khuyenmai
+select * from khuyenmaihoadon
 
 
 
@@ -219,18 +234,21 @@ VALUES
 ('2', N'Nhân viên 2', '0987654321', 0, N'Số 4, đường Bà Triệu, TP. Hải Phòng');
 INSERT INTO HOADON (MANV, MAKH, NGAYTAO,TRANGTHAI)
 VALUES
-(1, 1, '2023-11-10','Chờ thanh toán'),
-(2, 2, '2023-11-11','Chờ thanh toán');
+(1, 1, '2023-11-10','Chưa thanh toán'),
+(2, 2, '2023-11-11','Chưa thanh toán');
 INSERT INTO HOADONCHITIET (MACTSP, MAHD, TONGTIEN, SOLUONG, TRANGTHAI)
 VALUES
 (1, 100000, 200000, 1, 'đã thanh toán'),
 (11, 100000, 150000, 2, 'đã thanh toán'),
 (21, 100001, 300000, 3, 'đã thanh toán');
-INSERT INTO DOITRA (MAHDCT, MAKH, MANV, NGAYDOI, LYDO)
+INSERT INTO khuyenmai( noidungkhuyenmai, makhuyenmai, giam, ngaybatdau,ngayketthuc,trangthai)
 VALUES
-(100001, 1, 1, '2023-11-12', N'Đổi size');
+(N'mã khuyến mãi ngày cuối tuần','hGdhyLequOAqpSq',20000, '2023-12-1','2023-12-3', N'chưa sử dụng'),
+(N'mã khuyến mãi ngày cuối tuần','YBYfjQhvODJDsco',15000, '2023-12-1','2023-12-3', N'chưa sử dụng')
 
-
+--INSERT INTO khuyenmaihoadon(idKM,MAHD)
+--VALUES
+--();
 -- khu vục test
 
 SELECT sanpham.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,gia,chitietsanpham.SOLUONG,MACTSP FROM SANPHAM join CHITIETSANPHAM
@@ -256,4 +274,5 @@ SELECT SANPHAM.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,gia,chitietsanpham.SOLUONG,
                 join SIZE on SIZE.MASIZE = CHITIETSANPHAM.MASIZE order by sanpham.masp,TENSP,TENSIZE,TENMAU,TENCHATLIEU,FORMAT(gia,'N0','de-DE'),chitietsanpham.SOLUONG,MACTSP,CHITIETSANPHAM.HINHANH,trangthai
 
 
-				delete HOADON where TRANGTHAI = N'Chờ thanh toán'
+				delete from khuyenmai
+				

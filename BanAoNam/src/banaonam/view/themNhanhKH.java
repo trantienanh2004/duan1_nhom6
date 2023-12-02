@@ -163,6 +163,9 @@ public class themNhanhKH extends javax.swing.JPanel {
             fillTable(khService.getALLKH());
         }else{
             JOptionPane.showMessageDialog(this, "Thêm lỗi");
+            System.out.println(" "+kh.getTenKH());
+            System.out.println(" "+kh.getSdt());
+            System.out.println(" "+kh.getMaKH());
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 

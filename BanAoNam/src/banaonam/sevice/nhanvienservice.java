@@ -21,6 +21,7 @@ public class nhanvienservice {
     ResultSet rs = null;
     String sql = "";
 
+
     public int getMaNV(int maTK) {
         sql = "select MANV from NHANVIEN where MATK = ?";
         nhanvien nv = null;
@@ -57,5 +58,24 @@ public class nhanvienservice {
             return null;
         }
     }
+          public String chucvu(int maNV) {
+        sql = "select chucvu from NHANVIEN where MANV = ?";
+        nhanvien nv = null;
+        try {
+            con = DB.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, maNV);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                nv = new nhanvien();
+                nv.setTenNV(rs.getString("TENNV"));
+            }
+            return nv.getTenNV();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
 
 }

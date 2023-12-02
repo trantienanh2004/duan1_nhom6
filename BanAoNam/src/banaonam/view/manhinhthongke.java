@@ -17,9 +17,7 @@ public class manhinhthongke extends javax.swing.JInternalFrame {
      */
     public manhinhthongke() {
         initComponents();
-        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
-        ui.setNorthPane(null);
+        setlaiborder();
     }
 
     /**
@@ -48,4 +46,10 @@ public class manhinhthongke extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+private void setlaiborder() {
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
+        ui.setNorthPane(null);
+        setSize(900, 460);
+    }
 }

@@ -41,6 +41,27 @@ public class khachhangservice {
             return "Khách hàng chưa tồn tại";
         }
     }
+    public String getTenKHByMA(int ma) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select TENKH from KHACHHANG where MAKH = ?";
+        khachhang kh = null;
+        try {
+            con = DB.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, ma);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                kh = new khachhang();
+                kh.setTenKH(rs.getString("TENKH"));
+            }
+            return kh.getTenKH();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     public int getMaKH(String sdt) {
         Connection con = null;
@@ -95,7 +116,7 @@ public class khachhangservice {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<khachhang> list = new ArrayList<>();
-        String sql = "select MAKH,TENKH,SDT from KHACHHANG";
+        String sql = "select MAKH,TENKH,SDT from KHACHHANG where MAKH!=(select min(MAKH) from KHACHHANG)";
 
         try {
             con = DB.getConnection();

@@ -49,23 +49,61 @@ public class hoadonchitietservice {
         }
     }
 
+    public List<hoadonchitiet> getHDByMAHDByQLHD(int maHD) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select SANPHAM.MASP,TENSP,TENMAU,TENCHATLIEU,TENSIZE,HOADONCHITIET.SOLUONG,CHITIETSANPHAM.GIA,HOADONCHITIET.TONGTIEN from HOADONCHITIET \n"
+                + "                join CHITIETSANPHAM on CHITIETSANPHAM.MACTSP = HOADONCHITIET.MACTSP \n"
+                + "                join SANPHAM on SANPHAM.MASP = CHITIETSANPHAM.MASP\n"
+                + "				join MAUSAC on MAUSAC.MAMS = CHITIETSANPHAM.MAMS\n"
+                + "				join CHATLIEU on CHATLIEU.MACL = CHITIETSANPHAM.MACL\n"
+                + "				join SIZE on SIZE.MASIZE = CHITIETSANPHAM.MASIZE\n"
+                + "				where MAHD = ? ";
+        List<hoadonchitiet> list = new ArrayList<>();
+        try {
+            con = DB.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, maHD);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                hoadonchitiet hdct = new hoadonchitiet();
+                hdct.setMau(rs.getString("TENMAU"));
+                hdct.setCl(rs.getString("TENCHATLIEU"));
+                hdct.setSize(rs.getString("TENSIZE"));
+                hdct.setMaSP(rs.getString("MASP"));
+                hdct.setTenSP(rs.getString("TENSP"));
+                hdct.setSoLuong(rs.getInt("SOLUONG"));
+                hdct.setGia(rs.getDouble("GIA"));
+                hdct.setTongTien(rs.getDouble("TONGTIEN"));
+
+                list.add(hdct);
+            }
+            return list;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    
+
     public int getMaCTSP(int maHDCT) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         String sql = "select MACTSP from HOADONCHITIET where MAHDCT = ?";
-        hoadonchitiet hdct= null;
+        hoadonchitiet hdct = null;
         try {
             con = DB.getConnection();
             ps = con.prepareStatement(sql);
             ps.setObject(1, maHDCT);
             rs = ps.executeQuery();
-            while(rs.next()){
-                 hdct = new hoadonchitiet();
+            while (rs.next()) {
+                hdct = new hoadonchitiet();
                 hdct.setMaCTSP(rs.getInt("MACTSP"));
             }
-           
+
             return hdct.getMaCTSP();
         } catch (Exception e) {
             return 0;
@@ -99,29 +137,29 @@ public class hoadonchitietservice {
         }
     }
 
-   
-    public int addHDCT(hoadonchitiet hdct){
+    public int addHDCT(hoadonchitiet hdct) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "";
-        
+
         sql = "insert into HOADONCHITIET values (?,?,?,?,?)";
         try {
-            con =  DB.getConnection();
+            con = DB.getConnection();
             ps = con.prepareStatement(sql);
             ps.setObject(1, hdct.getMaCTSP());
             ps.setObject(2, hdct.getMaHD());
             ps.setObject(3, hdct.getTongTien());
             ps.setObject(4, hdct.getSoLuong());
             ps.setObject(5, hdct.getTrangThai());
-            
+
             return ps.executeUpdate();
         } catch (Exception e) {
             return 0;
         }
     }
-    public int upfateSL(hoadonchitiet hdct,int sl) {
+
+    public int upfateSL(hoadonchitiet hdct, int sl) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -134,13 +172,13 @@ public class hoadonchitietservice {
             ps.setObject(1, sl);
             ps.setObject(2, hdct.getMaHDCT());
 
-
             return ps.executeUpdate();
         } catch (Exception e) {
             return 0;
         }
     }
-    public int updateTrangThai(hoadonchitiet hdct,String tt) {
+
+    public int updateTrangThai(hoadonchitiet hdct, String tt) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -152,7 +190,6 @@ public class hoadonchitietservice {
             ps = con.prepareStatement(sql);
             ps.setObject(1, tt);
             ps.setObject(2, hdct.getMaHDCT());
-
 
             return ps.executeUpdate();
         } catch (Exception e) {

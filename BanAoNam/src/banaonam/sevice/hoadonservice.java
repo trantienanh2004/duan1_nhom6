@@ -45,6 +45,29 @@ public class hoadonservice {
             return null;
         }
     }
+    public List<hoadon> getAllHDByQLHD() {
+        sql = "select MAHD,NGAYTAO,MANV,MAKH,TRANGTHAI from HOADON ";
+        List<hoadon> list = new ArrayList<>();
+        try {
+            con = DB.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                hoadon hd = new hoadon();
+                hd.setMaHD(rs.getInt("MAHD"));
+                hd.setMaNV(rs.getInt("MANV"));
+                hd.setTrangThai(rs.getString("TRANGTHAI"));
+                hd.setNgayTao(rs.getString("NGAYTAO"));
+                hd.setMaKH(rs.getInt("MAKH"));
+
+                list.add(hd);
+
+            }
+            return list;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     public int addHD(hoadon hd) {
         sql = "insert into HOADON values (?,?,?,?)";

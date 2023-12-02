@@ -17,9 +17,7 @@ public class manhinhkhachhang extends javax.swing.JInternalFrame {
      */
     public manhinhkhachhang() {
         initComponents();
-        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
-        ui.setNorthPane(null);
+        setlaiborder();
     }
 
     /**
@@ -45,7 +43,17 @@ public class manhinhkhachhang extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+       private void setlaiborder() {
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
+        ui.setNorthPane(null);
+        setSize(900, 460);
+    }
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
 }

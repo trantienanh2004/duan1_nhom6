@@ -15,17 +15,12 @@ import banaonam.sevice.mauService;
 import banaonam.sevice.sanphamchitietService;
 import banaonam.sevice.sizeService;
 import java.awt.Image;
-import java.io.File;
 import java.text.Normalizer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import java.util.List;
 import java.util.regex.Pattern;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
